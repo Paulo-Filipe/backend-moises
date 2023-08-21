@@ -13,8 +13,11 @@ services:
     environment:
       NODE_ENV: development
       DATABASE_URL: postgres://postgres:password@postgres:5432/db
+      CACHE_TTL: 1800
+      CACHE_URL: redis://redis:6379
     depends_on:
       - postgres
+      - redis
 
   postgres:
     image: postgres:latest
@@ -26,6 +29,15 @@ services:
       - '5432:5432'
     volumes:
       - pgdata:/var/lib/postgresql/data3
+  
+  redis:
+    image: redis:latest
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+
 
 volumes:
   pgdata:
+  redis_data:
