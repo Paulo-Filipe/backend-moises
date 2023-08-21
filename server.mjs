@@ -5,6 +5,7 @@ import resolvers from './src/resolvers.js';
 import knex from 'knex';
 import knexConfig from './knexfile.js';
 import dotenv from 'dotenv';
+import CacheService from './src/services/cache.service.mjs';
 dotenv.config();
 const typeDefs = readFileSync('./schema/schema.graphql', 'utf8');
 
@@ -27,6 +28,7 @@ async function startServer() {
   const PORT = process.env.PORT || 4000;
   app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}/graphql`);
+    console.log(`Cache of ${CacheService.ttl} seconds`)
   });
 }
 
