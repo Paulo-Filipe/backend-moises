@@ -92,3 +92,4 @@ If I had more time, there are several improvements I would implement:
 - Centralization of configurations and environmental variables into a single object.
 - Establishment of a default user for integration testing purposes.
 - Implementation of insightful logs to improve observability (I didn't invest extensive effort in this aspect, as I found it less pertinent for a straightforward system. Once more, aiming to steer clear of overengineering).
+- Use of Typescript.
