@@ -10,7 +10,7 @@ const CacheService = {
 
         const raw = await redis.get(formedkey);
 
-        return await CacheService.deserializa(raw);
+        return await CacheService.deserialize(raw);
     },
     set: async (key, subKey, value) => {
         const formedKey = CacheService.getKey(key, subKey);
@@ -35,7 +35,7 @@ const CacheService = {
     getKey: (key, subKey) => {
         return `${key}/${subKey}`
     },
-    deserializa: (input) => JSON.parse(input),
+    deserialize: (input) => JSON.parse(input),
     serialize: (input) => JSON.stringify(input)
 }
 
