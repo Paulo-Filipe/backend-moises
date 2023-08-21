@@ -7,6 +7,7 @@ const getUserController = async (id) => {
     const cachedUser = await CacheService.get(userCacheKey, id);
     const user = cachedUser ?? await userOperations.getUserById(id);
 
+    if(!user) throw new Error('not found');
     if (!cachedUser) await CacheService.set(userCacheKey, id, user);
 
     return await mountUserService(user);
