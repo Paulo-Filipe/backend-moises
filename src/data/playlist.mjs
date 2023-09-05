@@ -25,17 +25,13 @@ const playlistOperations = {
             .returning('*')
     },
     deletePlaylist: async (id) => {
-        await Promise.all(
-            [
-                knex(Playlists)
-                    .where({ id })
-                    .first()
-                    .del(),
-                knex(PlaylistSongs)
-                    .where({ playlist_id: id })
-                    .del()
-            ]
-        )
+        await knex(PlaylistSongs)
+            .where({ playlist_id: id })
+            .del();
+        await knex(Playlists)
+            .where({ id })
+            .first()
+            .del();
     },
     getPlaylistSongs: async (id) => {
         const playlistSongs = await knex(PlaylistSongs)
